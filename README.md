@@ -67,9 +67,9 @@
 
 [**Improvement Names Customized**](https://www.nexusmods.com/skyrimspecialedition/mods/59435) - изменения названий предметов
 
-[**Comprehensive Attack Rate Patch**](https://www.nexusmods.com/skyrimspecialedition/mods/89042) - правки скорости атаки. Надо претестировать с анимациями.
+[**Comprehensive Attack Rate Patch**](https://www.nexusmods.com/skyrimspecialedition/mods/89042) - правки скорости атаки. Надо протестировать с анимациями.
 
-[**Attack Speed Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/10741) - правки скорости атаки. Надо претестировать с анимациями.
+[**Attack Speed Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/10741) - правки скорости атаки. Надо протестировать с анимациями.
 
 [**Dynamic Spell Descriptions**](https://www.nexusmods.com/skyrimspecialedition/mods/136026) - изменяет отображаемые части описания заклинания в зависимости от собственных условий
 
