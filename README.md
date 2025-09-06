@@ -77,7 +77,7 @@
 
 [**Lexicon SKSE**](https://www.nexusmods.com/skyrimspecialedition/mods/153176) - Скриптовый язык, интегрированный с C++, позволяет создавать собственные скриптовые и нативные функции, а также вызывать эти функции из нативного SKSE.
 
-[**Actor Value Generator**](https://www.nexusmods.com/skyrimspecialedition/mods/84743) - позволяющий создавать новые значения для актёров и интегрировать их в плагины
+[**Actor Value Generator**](https://www.nexusmods.com/skyrimspecialedition/mods/84743) - позволяет создавать новые значения для актёров и интегрировать их в плагины
 
 # Моды на анимации:
 Тут моды которые вероятно буду интегрированы в деревья перков. 
