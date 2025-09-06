@@ -76,7 +76,7 @@
 # Моды на анимации:
 Тут моды которые вероятно буду интегрированы в деревья перков. 
 
-[**TK Dodge SE**](https://www.nexusmods.com/skyrimspecialedition/mods/15309) - Уклонения. Нужно привязать работу укланиний к перкам. 
+[**TK Dodge SE**](https://www.nexusmods.com/skyrimspecialedition/mods/15309) - Уклонения. Нужно привязать работу уклонений к перкам. 
 
 [**Stances NG**](https://www.nexusmods.com/skyrimspecialedition/mods/117986) - Стойки. Нужно сделать перки которые будут работать в определенных стойках. 
 
