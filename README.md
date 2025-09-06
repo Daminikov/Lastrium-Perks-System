@@ -3,7 +3,8 @@
 
 Мод в разработке на стадии планирования. Распишу пока какие моды точно будут требоваться и интегрироваться. 
 
-**`Точно нужны:`**
+# Точно нужны:
+Моды которые 100% должны присутствовать.
 
 [**Address Library for SKSE Plugins**](https://www.nexusmods.com/skyrimspecialedition/mods/32444) - Требуется из-за зависимостей.
 
@@ -31,7 +32,10 @@
 
 [**Skyrim Skill Uncapper**](https://www.nexusmods.com/skyrimspecialedition/mods/82558) - Позволяет изменять максимальный уровень и максимальный эффективный уровень навыков
 
-**`Вероятно будут задействованы:`**
+[**Magic Fixes and Tweaks SKSE**](https://www.nexusmods.com/skyrimspecialedition/mods/148647) - исправления косяков с магией
+
+# Вероятно будут задействованы
+Всякие полезные моды которые могут понадобится во время разработки. Если будуд задействованы перенести в "Точно нужны"
 
 [**Dylbills Papyrus Functions**](https://www.nexusmods.com/skyrimspecialedition/mods/65410) - Много полезных функций Papyrus.
 
@@ -53,6 +57,29 @@
 
 [**Container Distribution Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/120152) - манипуляции с игровыми контейнерами
 
+[**Leveled List Object Swapper**](https://www.nexusmods.com/skyrimspecialedition/mods/132765) - манипуляции с левел листами
+
 [**Container Item Distributor**](https://www.nexusmods.com/skyrimspecialedition/mods/99486) - манипуляции с игровыми контейнерами
 
 [**Item Equip Restrictor**](https://www.nexusmods.com/skyrimspecialedition/mods/108665) - можно добавить требования к предметам
+
+[**Crafting Recipe Distributor**](https://www.nexusmods.com/skyrimspecialedition/mods/52276) - манипуляции с рецептами крафта
+
+[**Improvement Names Customized**](https://www.nexusmods.com/skyrimspecialedition/mods/59435) - изменения названий предметов
+
+[**Comprehensive Attack Rate Patch**](https://www.nexusmods.com/skyrimspecialedition/mods/89042) - правки скорости атаки. Надо претестировать с анимациями.
+
+[**Attack Speed Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/10741) - правки скорости атаки. Надо претестировать с анимациями.
+
+[**Dynamic Spell Descriptions**](https://www.nexusmods.com/skyrimspecialedition/mods/136026) - изменяет отображаемые части описания заклинания в зависимости от собственных условий
+
+# Моды на анимации:
+Тут моды которые вероятно буду интегрированы в деревья перков. 
+
+[**TK Dodge SE**](https://www.nexusmods.com/skyrimspecialedition/mods/15309) - Уклонения. Нужно привязать работу укланиний к перкам. 
+
+[**Stances NG**](https://www.nexusmods.com/skyrimspecialedition/mods/117986) - Стойки. Нужно сделать перки которые будут работать в определенных стойках. 
+
+
+
+
