@@ -2,7 +2,7 @@
 #include "SKSEMenuFramework.h"
 #include "Configuration.h"
 
-void UI::Register() {
+void UI_::Register() {
 
     if (!QTRLib::SKSEMenuFramework::IsInstalled()) {
         return;
@@ -13,7 +13,7 @@ void UI::Register() {
 }
 
 
-void __stdcall UI::Example1::Render() {
+void __stdcall UI_::Example1::Render() {
     if (QTRLib::ImGui::Button("Button")) {
         logger::trace("Button pressed");
     }
