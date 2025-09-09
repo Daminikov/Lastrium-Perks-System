@@ -8,6 +8,8 @@
 
 [**Address Library for SKSE Plugins**](https://www.nexusmods.com/skyrimspecialedition/mods/32444) - Требуется из-за зависимостей.
 
+[**SSE Engine Fixes**](https://www.nexusmods.com/skyrimspecialedition/mods/17230) - Устранения различных проблем с движком
+
 [**Papyrus Extender**](https://www.nexusmods.com/skyrimspecialedition/mods/22854) - Расширитель скриптов Papyrus.
 
 [**PapyrusUtil**](https://www.nexusmods.com/skyrimspecialedition/mods/13048) - Расширитель скриптов Papyrus.
@@ -35,6 +37,13 @@
 [**Magic Fixes and Tweaks SKSE**](https://www.nexusmods.com/skyrimspecialedition/mods/148647) - исправления косяков с магией
 
 [**Resurrection API**](https://www.nexusmods.com/skyrimspecialedition/mods/131625) - API для работы воскрешения игрока и боссов
+
+[**SKSE Menu Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/120352) - Свои меню на SKSE
+
+[**SkyPrompt**](https://www.nexusmods.com/skyrimspecialedition/mods/148703) - внутриигровые подсказки и система взаимодействия с использованием ImGui для пользовательского интерфейса.
+
+[**ImGui Icons**](https://www.nexusmods.com/skyrimspecialedition/mods/114790) - иконки для ImGui
+
 
 # Вероятно будут задействованы
 Всякие полезные моды которые могут понадобится во время разработки. Если будуд задействованы перенести в "Точно нужны"
