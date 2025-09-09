@@ -24,9 +24,10 @@ const int LAST_TestCrit_Mesg = 0x819;
 // Registration of functions
 void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell);
 void debug_notification(RE::BGSMessage* msg);
-void OnMessage(SKSE::MessagingInterface::Message* message);
 void addSubscriber();
 static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message);
+
+
 
 // The work of the "Escape from Death" perk
 class PerkResurrection : public ResurrectionAPI {
@@ -62,27 +63,35 @@ SKSEPluginLoad(const SKSE::LoadInterface *skse) {
         return false;
     }
     g_messaging->RegisterListener("SKSE", SKSEMessageHandler);
-    
+  
     info("Loading OK!!!");
     return true;
     
 }
 
-// Actions when loading the game
+// Actions when game Messaging Event
 static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
     switch (message->type) {
+//        case SKSE::MessagingInterface::kPostLoad:
+//        break;
+//        case SKSE::MessagingInterface::kPostPostLoad:
+//        break;
+//        case SKSE::MessagingInterface::kPreLoadGame:
+//        break;
+//        case SKSE::MessagingInterface::kPostLoadGame:
+//        break;
+//        case SKSE::MessagingInterface::kSaveGame:
+//        break;
+//        case SKSE::MessagingInterface::kDeleteGame:
+//        break;
+//        case SKSE::MessagingInterface::kInputLoaded:
+//        break;
+//      case SKSE::MessagingInterface::kNewGame:
+//      break;
         case SKSE::MessagingInterface::kDataLoaded:
- //           info("kDataLoaded OK!!!");
             addSubscriber();
-            break;
-    }
-}
-
-// OnMessage
-void OnMessage(SKSE::MessagingInterface::Message* message) {
-    if (message->type == SKSE::MessagingInterface::kDataLoaded) {
-    }
-    if (message->type == SKSE::MessagingInterface::kPostLoad) {
+        break;
+    
     }
 }
 

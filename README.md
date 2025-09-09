@@ -42,7 +42,13 @@
 
 [**SkyPrompt**](https://www.nexusmods.com/skyrimspecialedition/mods/148703) - внутриигровые подсказки и система взаимодействия с использованием ImGui для пользовательского интерфейса.
 
-[**ImGui Icons**](https://www.nexusmods.com/skyrimspecialedition/mods/114790) - иконки для ImGui
+[**Comprehensive Critical Damage Fix**](https://www.nexusmods.com/skyrimspecialedition/mods/157530) - исправление критического урона
+
+[**Magic Critical Hits**](https://www.nexusmods.com/skyrimspecialedition/mods/156559) - криты магией
+
+
+
+
 
 
 # Вероятно будут задействованы
