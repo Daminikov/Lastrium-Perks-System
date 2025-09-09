@@ -46,8 +46,7 @@
 
 [**Magic Critical Hits**](https://www.nexusmods.com/skyrimspecialedition/mods/156559) - криты магией
 
-
-
+[**Ethereal Skill Menu Overhaul**](https://www.nexusmods.com/skyrimspecialedition/mods/138515) - переработка меню навыков
 
 
 
@@ -110,7 +109,27 @@
 
 [**Spell Classes**](https://www.nexusmods.com/skyrimspecialedition/mods/157626) - добавление своих классов заклинаний
 
+[**Upgradable Spells and Items**](https://www.nexusmods.com/skyrimspecialedition/mods/142217) - деревья перков для предметов
 
+[**Recharge Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/157327) - Создавние зачарованных предметов, которые можно заряжать не только с помощью камней душ.
+
+[**LoreBox - Item and Spell Tooltips**](https://www.nexusmods.com/skyrimspecialedition/mods/156534) - дополнительные описания предметов или заклинаний.
+
+[**B612**](https://www.nexusmods.com/skyrimspecialedition/mods/127701) - кастомные ванильные меню
+
+[**Animunculi Override**](https://www.nexusmods.com/skyrimspecialedition/mods/114546) - мини-игра на взлом гномьих роботов
+
+[**Sky Signs**](https://www.nexusmods.com/skyrimspecialedition/mods/147884) - меню выбора стоячих камней
+
+[**Legendary Enemies**](https://www.nexusmods.com/skyrimspecialedition/mods/140633) - легендарные враги
+
+[**Biggie Traits**](https://www.nexusmods.com/skyrimspecialedition/mods/136384) - Черты характера, определяющие выбор и создание новых стилей игры.
+
+[**Requiem - Locks Left Behind**](https://www.nexusmods.com/skyrimspecialedition/mods/136384) - записка с невзломаными замками
+
+[**Remember Lockpick Angle**](https://www.nexusmods.com/skyrimspecialedition/mods/26838) - После того как отмычка сломалась, новую отмычку вставляют под тем же углом, под которым сломалась предыдущая.
+
+[**Stagger and Knockdown Perk Entries**](https://www.nexusmods.com/skyrimspecialedition/mods/109932) - Позволяет легко создавать перки, которые при попадании наносят оглушение или сбивают с ног
 
 
 
