@@ -34,6 +34,8 @@
 
 [**Magic Fixes and Tweaks SKSE**](https://www.nexusmods.com/skyrimspecialedition/mods/148647) - исправления косяков с магией
 
+[**Resurrection API**](https://www.nexusmods.com/skyrimspecialedition/mods/131625) - API для работы воскрешения игрока и боссов
+
 # Вероятно будут задействованы
 Всякие полезные моды которые могут понадобится во время разработки. Если будуд задействованы перенести в "Точно нужны"
 

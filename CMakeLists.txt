@@ -14,16 +14,16 @@ include(cmake/lib/autoCollectSources.cmake)
 #                       Config                         #
 # ---------------------------------------------------- #
 
-set(AUTHOR_NAME "SkyrimThiago")
-set(PRODUCT_NAME "ThiagoTemplate")
-set(BEAUTIFUL_NAME "Thiago Template")
+set(AUTHOR_NAME "Daminikov")
+set(PRODUCT_NAME "LastriumPerks")
+set(BEAUTIFUL_NAME "[SKSE] Lastrium Perks System")
 
 add_project_folder(./)
 add_project_folder(./vendor/qtrlib/)
 
 cmake_minimum_required(VERSION 3.21)
 
-project(${PRODUCT_NAME} VERSION 0.1.12.0 LANGUAGES CXX)
+project(${PRODUCT_NAME} VERSION 0.0.0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ON)
