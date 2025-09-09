@@ -96,6 +96,24 @@
 
 [**Actor Value Generator**](https://www.nexusmods.com/skyrimspecialedition/mods/84743) - позволяет создавать новые значения для актёров и интегрировать их в плагины
 
+[**Magicka Shield**](https://www.nexusmods.com/skyrimspecialedition/mods/157162) - добавляет механику магического щита
+
+[**Shalidor's Mirror**](https://www.nexusmods.com/skyrimspecialedition/mods/89912) - отражение заклинаний
+
+[**Random Root Enchantments**](https://www.nexusmods.com/skyrimspecialedition/mods/150299) - рандомные чары на предметах. 
+
+[**Enchantment Distributor and Upgrader**](https://www.nexusmods.com/skyrimspecialedition/mods/123810) - рандомные чары на предметах. 
+
+[**Dynamic Persistent Forms**](https://www.nexusmods.com/skyrimspecialedition/mods/116001) - создание новых предметов скриптом
+
+[**Inventory Interface Information Injector**](https://www.nexusmods.com/skyrimspecialedition/mods/85702) - добавление своих значков в интерфейст SkyUi
+
+[**Spell Classes**](https://www.nexusmods.com/skyrimspecialedition/mods/157626) - добавление своих классов заклинаний
+
+
+
+
+
 # Моды на анимации:
 Тут моды которые вероятно буду интегрированы в деревья перков. 
 
