@@ -17,6 +17,10 @@ const int EscapeFromDeath_Perk = 0x80F;
 const int EscapeFromDeath_Spel = 0x810;
 const int EscapeFromDeath_Mesg = 0x80C;
 
+// Variables of the "System critical hits"
+const int TEST_Bladesman30 = 0x818; 
+const int LAST_TestCrit_Mesg = 0x819;
+
 // Registration of functions
 void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell);
 void debug_notification(RE::BGSMessage* msg);
@@ -58,6 +62,7 @@ SKSEPluginLoad(const SKSE::LoadInterface *skse) {
         return false;
     }
     g_messaging->RegisterListener("SKSE", SKSEMessageHandler);
+    
     info("Loading OK!!!");
     return true;
     
