@@ -11,20 +11,20 @@ using namespace logger;
 const char* plugin_name = "LastriumPerks.esp";
 
 
-// Переменные перка "Бегство от смерти"
+// Variables of the "Escape from Death" perk
 const int EscapeFromDeath_Mgef = 0x811;
 const int EscapeFromDeath_Perk = 0x80F;
 const int EscapeFromDeath_Spel = 0x810;
 const int EscapeFromDeath_Mesg = 0x80C;
 
-// Регистрация функций
+// Registration of functions
 void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell);
 void debug_notification(RE::BGSMessage* msg);
 void OnMessage(SKSE::MessagingInterface::Message* message);
 void addSubscriber();
 static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message);
 
-// Работа перка "Бегство от смерти"
+// The work of the "Escape from Death" perk
 class PerkResurrection : public ResurrectionAPI {
     
     bool should_resurrect(RE::Actor* a) const override {
@@ -42,7 +42,7 @@ class PerkResurrection : public ResurrectionAPI {
     }
 };
 
-// Старт SKSE
+// Start SKSE
 SKSEPluginLoad(const SKSE::LoadInterface *skse) {
     SKSE::Init(skse);
     SetupLog();
@@ -63,7 +63,7 @@ SKSEPluginLoad(const SKSE::LoadInterface *skse) {
     
 }
 
-// Действия при загрузке игры
+// Actions when loading the game
 static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
     switch (message->type) {
         case SKSE::MessagingInterface::kDataLoaded:
@@ -81,7 +81,7 @@ void OnMessage(SKSE::MessagingInterface::Message* message) {
     }
 }
 
-// Каст спелла
+// Cast spell
 void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell) {
     RE::MagicCaster* caster = attacker->GetMagicCaster(RE::MagicSystem::CastingSource::kInstant);
     if (caster && spell) {
@@ -89,14 +89,14 @@ void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell) {
     }
 }
 
-// Дебаг
+// Debug
 void debug_notification(RE::BGSMessage* msg) {
     RE::BSString a;
     msg->GetDescription(a, msg);
     RE::DebugNotification(a.c_str());
 }
 
-// Добавить слушателя
+// Add a listener
 void addSubscriber() {
 //    info("addSubscriber!!!");
     if (auto pluginHandle = REX::W32::GetModuleHandleA("ResurrectionAPI.dll")) {
