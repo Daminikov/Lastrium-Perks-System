@@ -9,6 +9,7 @@ using namespace SKSE;
 using namespace logger;
 
 const char* plugin_name = "LastriumPerks.esp";
+auto menuName1 = "StatsMenu";
 
 
 // Variables of the "Escape from Death" perk
@@ -72,11 +73,14 @@ public:
 
     RE::BSEventNotifyControl ProcessEvent(const RE::MenuOpenCloseEvent* event,
                                           RE::BSTEventSource<RE::MenuOpenCloseEvent>*) {
+                     
         if (event->opening)
             logger::info("OPEN MENU {}", event->menuName);
+
         else
             logger::info("CLOSE MENU {}", event->menuName);
         return RE::BSEventNotifyControl::kContinue;
+        
     }
 
     RE::BSEventNotifyControl ProcessEvent(RE::InputEvent* const* eventPtr,

@@ -14,7 +14,7 @@ void UI_::Register() {
 
 
 void __stdcall UI_::Example1::Render() {
-    if (QTRLib::ImGui::Button("Button")) {
+    if (QTRLib::ImGui::Button("$Button1")) {
         logger::trace("Button pressed");
     }
 }
