@@ -48,6 +48,8 @@
 
 [**Ethereal Skill Menu Overhaul**](https://www.nexusmods.com/skyrimspecialedition/mods/138515) - переработка меню навыков
 
+[**B612**](https://www.nexusmods.com/skyrimspecialedition/mods/127701) - кастомные ванильные меню
+
 
 
 # Вероятно будут задействованы
@@ -114,8 +116,6 @@
 [**Recharge Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/157327) - Создавние зачарованных предметов, которые можно заряжать не только с помощью камней душ.
 
 [**LoreBox - Item and Spell Tooltips**](https://www.nexusmods.com/skyrimspecialedition/mods/156534) - дополнительные описания предметов или заклинаний.
-
-[**B612**](https://www.nexusmods.com/skyrimspecialedition/mods/127701) - кастомные ванильные меню
 
 [**Animunculi Override**](https://www.nexusmods.com/skyrimspecialedition/mods/114546) - мини-игра на взлом гномьих роботов
 
