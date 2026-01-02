@@ -53,7 +53,7 @@
 # Вероятно будут задействованы
 Всякие полезные моды которые могут понадобится во время разработки. Если будуд задействованы перенести в "Точно нужны"
 
-[**Conjuration Limit Fix**]([https://www.nexusmods.com/skyrimspecialedition/mods/65410](https://www.nexusmods.com/skyrimspecialedition/mods/117155) - Изменяет подход Skyrim к ограничению количества призываемых/воскрешённых персонажей
+[**Conjuration Limit Fix**](https://www.nexusmods.com/skyrimspecialedition/mods/117155) - Изменяет подход Skyrim к ограничению количества призываемых/воскрешённых персонажей
 
 [**Slow Time Unbound**](https://www.nexusmods.com/skyrimspecialedition/mods/115453) - Эффекты архетипа «Замедление времени» могут накладываться друг на друга. Кроме того, с помощью флага xedit/CK MGEF можно создавать эффекты, которые влияют только на временной масштаб игрока.
 
