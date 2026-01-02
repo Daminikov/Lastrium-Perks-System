@@ -55,6 +55,8 @@
 # Вероятно будут задействованы
 Всякие полезные моды которые могут понадобится во время разработки. Если будуд задействованы перенести в "Точно нужны"
 
+[**Death Defiance System**](https://www.nexusmods.com/skyrimspecialedition/mods/167571) - Альтернативная воскрешалка с настройками. 
+
 [**SkyPrompt**](https://www.nexusmods.com/skyrimspecialedition/mods/148703) - внутриигровые подсказки и система взаимодействия с использованием ImGui для пользовательского интерфейса.
 
 [**Conjuration Limit Fix**](https://www.nexusmods.com/skyrimspecialedition/mods/117155) - Изменяет подход Skyrim к ограничению количества призываемых/воскрешённых персонажей
