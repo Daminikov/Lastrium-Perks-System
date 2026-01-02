@@ -30,7 +30,11 @@
 
 [**Custom Skills Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/41780) - добавление новых веток перков в деревья.
 
+[**Actor Value Generator**](https://www.nexusmods.com/skyrimspecialedition/mods/84743) - позволяет создавать новые значения для актёров и интегрировать их в плагины
+
 [**Perk Entry Point Extender**](https://www.nexusmods.com/skyrimspecialedition/mods/91192) - использование точек входа в перки с помощью Papyrus.
+
+[**aTweaks and Utilities**](https://www.nexusmods.com/skyrimspecialedition/mods/107741) - DLL с множеством новых точек входа для перков и значений для персонажей благодаря PEPE и AVG
 
 [**Skyrim Skill Uncapper**](https://www.nexusmods.com/skyrimspecialedition/mods/82558) - Позволяет изменять максимальный уровень и максимальный эффективный уровень навыков
 
@@ -39,8 +43,6 @@
 [**Resurrection API**](https://www.nexusmods.com/skyrimspecialedition/mods/131625) - API для работы воскрешения игрока и боссов
 
 [**SKSE Menu Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/120352) - Свои меню на SKSE
-
-[**SkyPrompt**](https://www.nexusmods.com/skyrimspecialedition/mods/148703) - внутриигровые подсказки и система взаимодействия с использованием ImGui для пользовательского интерфейса.
 
 [**Comprehensive Critical Damage Fix**](https://www.nexusmods.com/skyrimspecialedition/mods/157530) - исправление критического урона
 
@@ -54,6 +56,16 @@
 
 # Вероятно будут задействованы
 Всякие полезные моды которые могут понадобится во время разработки. Если будуд задействованы перенести в "Точно нужны"
+
+[**Cumulative Fear Frenzy Calm**](https://www.nexusmods.com/skyrimspecialedition/mods/121547) - Перерабока механики неистовства, страха и спокойствия, чтобы они накапливались при многократном применении и активировались при достижении порогового значения, а не при слишком высоком уровне, как в оригинальной игре.
+
+[**Death Defiance System**](https://www.nexusmods.com/skyrimspecialedition/mods/167571) - Альтернативная воскрешалка с настройками. 
+
+[**SkyPrompt**](https://www.nexusmods.com/skyrimspecialedition/mods/148703) - внутриигровые подсказки и система взаимодействия с использованием ImGui для пользовательского интерфейса.
+
+[**Conjuration Limit Fix**](https://www.nexusmods.com/skyrimspecialedition/mods/117155) - Изменяет подход Skyrim к ограничению количества призываемых/воскрешённых персонажей
+
+[**Slow Time Unbound**](https://www.nexusmods.com/skyrimspecialedition/mods/115453) - Эффекты архетипа «Замедление времени» могут накладываться друг на друга. Кроме того, с помощью флага xedit/CK MGEF можно создавать эффекты, которые влияют только на временной масштаб игрока.
 
 [**Dylbills Papyrus Functions**](https://www.nexusmods.com/skyrimspecialedition/mods/65410) - Много полезных функций Papyrus.
 
@@ -94,8 +106,6 @@
 [**Poisoner's Aid**](https://www.nexusmods.com/skyrimspecialedition/mods/93750) - меняет работу ядов
 
 [**Lexicon SKSE**](https://www.nexusmods.com/skyrimspecialedition/mods/153176) - Скриптовый язык, интегрированный с C++, позволяет создавать собственные скриптовые и нативные функции, а также вызывать эти функции из нативного SKSE.
-
-[**Actor Value Generator**](https://www.nexusmods.com/skyrimspecialedition/mods/84743) - позволяет создавать новые значения для актёров и интегрировать их в плагины
 
 [**Magicka Shield**](https://www.nexusmods.com/skyrimspecialedition/mods/157162) - добавляет механику магического щита
 
