@@ -1,8 +1,9 @@
 #include "Logger.h"
-#include "UI.h"
 #include "Hooks.h"
-#include "QTRLib.h"
 #include "ResurrectionAPI.h"
+#include <keyhandler.h>
+#include "PrismaUI_API.h"
+
 
 using namespace RE;
 using namespace SKSE;
@@ -10,6 +11,10 @@ using namespace logger;
 
 const char* plugin_name = "LastriumPerks.esp";
 auto menuName1 = "StatsMenu";
+
+//PrismaUI
+PRISMA_UI_API::IVPrismaUI1* PrismaUI;
+static PrismaView view;
 
 
 // Variables of the "Escape from Death" perk
@@ -120,13 +125,81 @@ class PerkResurrection : public ResurrectionAPI {
     }
 };
 
+// Actions when game Messaging Event
+static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
+    switch (message->type) {
+            //        case SKSE::MessagingInterface::kPostLoad:
+            //        break;
+            //        case SKSE::MessagingInterface::kPostPostLoad:
+            //        break;
+            //        case SKSE::MessagingInterface::kPreLoadGame:
+            //        break;
+            //        case SKSE::MessagingInterface::kPostLoadGame:
+            //        break;
+            //        case SKSE::MessagingInterface::kSaveGame:
+            //        break;
+            //        case SKSE::MessagingInterface::kDeleteGame:
+            //        break;
+        case SKSE::MessagingInterface::kInputLoaded:
+            RE::BSInputDeviceManager::GetSingleton()->AddEventSink(OurEventSink::GetSingleton());
+            break;
+            //      case SKSE::MessagingInterface::kNewGame:
+            //      break;
+        case SKSE::MessagingInterface::kDataLoaded:
+            addSubscriber();
+            // 1. Initialize PrismaUI API
+            PrismaUI = static_cast<PRISMA_UI_API::IVPrismaUI1*>(
+                PRISMA_UI_API::RequestPluginAPI(PRISMA_UI_API::InterfaceVersion::V1));
+
+            // 2. Create view and call "Invoke" method to send JavaScript code to view when DOM is ready.
+            view = PrismaUI->CreateView("PrismaUI-Example-UI/index.html", [](PrismaView view) -> void {
+                // View DOM is ready then you can use Invoke here (make sure that your JS methods are available after
+                // DOM is ready).
+                logger::info("View DOM is ready {}", view);
+
+                PrismaUI->Invoke(view, "updateFocusLabel('No. But press F3 to focus!')");
+            });
+
+            // 3. Also you could to register JS listener to handling JS methods calls.
+            PrismaUI->RegisterJSListener(view, "sendDataToSKSE", [](const char* data) -> void {
+                logger::info("Received data from JS: {}", data);
+            });
+
+            // Next lines is custom KEY DOWN / KEY UP realisation which bases at "src/keyhandler".
+            KeyHandler::RegisterSink();
+            KeyHandler* keyHandler = KeyHandler::GetSingleton();
+            const uint32_t TOGGLE_FOCUS_KEY = 0x3D;  // F3 key
+
+            // Press F3 to focus/unfocus view in-game.
+            KeyHandlerEvent toggleEventHandler = keyHandler->Register(TOGGLE_FOCUS_KEY, KeyEventType::KEY_DOWN, []() {
+                auto hasFocus = PrismaUI->HasFocus(view);
+
+                if (!hasFocus) {
+                    // Focus
+                    if (PrismaUI->Focus(view)) {
+                        PrismaUI->Invoke(view, "updateFocusLabel('Yeah, it is focused! Press F3 again to unfocus.')");
+                    }
+                } else {
+                    // Unfocus
+                    PrismaUI->Unfocus(view);
+                    PrismaUI->Invoke(view, "updateFocusLabel('Nah, it is not focused.')");
+                }
+            });
+
+            // If you want to unregister the key event handlers:
+            // keyHandler->Unregister(toggleEventHandler);
+            break;
+    }
+}
+
 // Start SKSE
 SKSEPluginLoad(const SKSE::LoadInterface *skse) {
+    REL::Module::reset();
+
     SKSE::Init(skse);
+    SKSE::AllocTrampoline(1 << 10);
     SetupLog();
-    UI_::Register();
     Hooks::Install();
-//    QTRLib::Install();
 
 
     auto g_messaging = reinterpret_cast<SKSE::MessagingInterface*>(skse->QueryInterface(SKSE::LoadInterface::kMessaging));
@@ -154,32 +227,7 @@ SKSEPluginLoad(const SKSE::LoadInterface *skse) {
     
 }
 
-// Actions when game Messaging Event
-static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
-    switch (message->type) {
-//        case SKSE::MessagingInterface::kPostLoad:
-//        break;
-//        case SKSE::MessagingInterface::kPostPostLoad:
-//        break;
-//        case SKSE::MessagingInterface::kPreLoadGame:
-//        break;
-//        case SKSE::MessagingInterface::kPostLoadGame:
-//        break;
-//        case SKSE::MessagingInterface::kSaveGame:
-//        break;
-//        case SKSE::MessagingInterface::kDeleteGame:
-//        break;
-        case SKSE::MessagingInterface::kInputLoaded:
-        RE::BSInputDeviceManager::GetSingleton()->AddEventSink(OurEventSink::GetSingleton());
-        break;
-//      case SKSE::MessagingInterface::kNewGame:
-//      break;
-        case SKSE::MessagingInterface::kDataLoaded:
-            addSubscriber();
-        break;
-    
-    }
-}
+
 
 // Cast spell
 void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell) {

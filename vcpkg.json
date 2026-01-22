@@ -5,6 +5,7 @@
   "dependencies": [
     "rapidcsv",
     "directxtk",
+    "directxmath",
     "spdlog",
     "glm"
   ],
