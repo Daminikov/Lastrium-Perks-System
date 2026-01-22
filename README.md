@@ -52,6 +52,10 @@
 
 [**B612**](https://www.nexusmods.com/skyrimspecialedition/mods/127701) - кастомные ванильные меню
 
+[**HasMagicEffect - Condition Tweak**](https://www.nexusmods.com/skyrimspecialedition/mods/169779) - Плагин Skse для изменения принципа работы условия «HasMagicEffect». По умолчанию ему всё равно, активен эффект или нет, но теперь он учитывает это, если у эффекта есть определённое ключевое слово.
+
+
+
 
 
 # Вероятно будут задействованы
