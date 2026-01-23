@@ -125,6 +125,43 @@ class PerkResurrection : public ResurrectionAPI {
     }
 };
 
+
+
+// Start SKSE
+SKSEPluginLoad(const SKSE::LoadInterface *skse) {
+//    REL::Module::reset();
+
+    SKSE::Init(skse);
+    SKSE::AllocTrampoline(1 << 10);
+    SetupLog();
+    Hooks::Install();
+
+
+    auto g_messaging = reinterpret_cast<SKSE::MessagingInterface*>(skse->QueryInterface(SKSE::LoadInterface::kMessaging));
+    if (!g_messaging) {
+        logger::critical("Failed to load messaging interface! This error is fatal, plugin will not load.");
+
+        return false;
+    }
+    g_messaging->RegisterListener("SKSE", SKSEMessageHandler);
+    auto* eventSink = OurEventSink::GetSingleton();
+
+    // ScriptSource
+    auto* eventSourceHolder = RE::ScriptEventSourceHolder::GetSingleton();
+    eventSourceHolder->AddEventSink<RE::TESHitEvent>(eventSink);
+    eventSourceHolder->AddEventSink<RE::TESActivateEvent>(eventSink);
+
+    // SKSE
+    SKSE::GetCrosshairRefEventSource()->AddEventSink(eventSink);
+
+    // UI
+    RE::UI::GetSingleton()->AddEventSink<RE::MenuOpenCloseEvent>(eventSink);
+
+    info("Loading OK!!!");
+    return true;
+    
+}
+
 // Actions when game Messaging Event
 static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
     switch (message->type) {
@@ -191,42 +228,6 @@ static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
             break;
     }
 }
-
-// Start SKSE
-SKSEPluginLoad(const SKSE::LoadInterface *skse) {
-    REL::Module::reset();
-
-    SKSE::Init(skse);
-    SKSE::AllocTrampoline(1 << 10);
-    SetupLog();
-    Hooks::Install();
-
-
-    auto g_messaging = reinterpret_cast<SKSE::MessagingInterface*>(skse->QueryInterface(SKSE::LoadInterface::kMessaging));
-    if (!g_messaging) {
-        logger::critical("Failed to load messaging interface! This error is fatal, plugin will not load.");
-
-        return false;
-    }
-    g_messaging->RegisterListener("SKSE", SKSEMessageHandler);
-    auto* eventSink = OurEventSink::GetSingleton();
-
-    // ScriptSource
-    auto* eventSourceHolder = RE::ScriptEventSourceHolder::GetSingleton();
-    eventSourceHolder->AddEventSink<RE::TESHitEvent>(eventSink);
-    eventSourceHolder->AddEventSink<RE::TESActivateEvent>(eventSink);
-
-    // SKSE
-    SKSE::GetCrosshairRefEventSource()->AddEventSink(eventSink);
-
-    // UI
-    RE::UI::GetSingleton()->AddEventSink<RE::MenuOpenCloseEvent>(eventSink);
-
-    info("Loading OK!!!");
-    return true;
-    
-}
-
 
 
 // Cast spell

@@ -3,11 +3,13 @@
  */
 #pragma once
 
+#include <Windows.h>
 #include <stdint.h>
 
 #include <functional>
 #include <iostream>
 #include <queue>
+
 
 typedef uint64_t PrismaView;
 
@@ -87,7 +89,7 @@ namespace PRISMA_UI_API {
     /// <param name="a_interfaceVersion">The interface version to request</param>
     /// <returns>The pointer to the API singleton, or nullptr if request failed</returns>
     [[nodiscard]] inline void* RequestPluginAPI(const InterfaceVersion a_interfaceVersion = InterfaceVersion::V1) {
-        auto pluginHandle = GetModuleHandle("PrismaUI.dll");
+        auto pluginHandle = GetModuleHandleW(L"PrismaUI.dll");
         _RequestPluginAPI requestAPIFunction = (_RequestPluginAPI)GetProcAddress(pluginHandle, "RequestPluginAPI");
 
         if (requestAPIFunction) {
