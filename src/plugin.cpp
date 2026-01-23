@@ -3,8 +3,10 @@
 #include "ResurrectionAPI.h"
 #include <keyhandler.h>
 #include "PrismaUI_API.h"
+#include <nlohmann/json.hpp>
 
 
+using JSON = nlohmann::json;
 using namespace RE;
 using namespace SKSE;
 using namespace logger;
@@ -12,8 +14,8 @@ using namespace logger;
 const char* plugin_name = "LastriumPerks.esp";
 auto menuName1 = "StatsMenu";
 
-//PrismaUI
-PRISMA_UI_API::IVPrismaUI1* PrismaUI;
+// Declare the global PrismaUI API variable
+PRISMA_UI_API::IVPrismaUI1* PrismaUI = nullptr;
 static PrismaView view;
 
 
@@ -23,6 +25,7 @@ const int EscapeFromDeath_Perk = 0x80F;
 const int EscapeFromDeath_Spel = 0x810;
 const int EscapeFromDeath_Mesg = 0x80C;
 
+
 // Variables of the "System critical hits"
 const int TEST_Bladesman30 = 0x818; 
 const int LAST_TestCrit_Mesg = 0x819;
@@ -31,9 +34,11 @@ const int LAST_TestCrit_Mesg = 0x819;
 void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell);
 void debug_notification(RE::BGSMessage* msg);
 void addSubscriber();
+void InitializeUI();
+void SendComplexData();
 static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message);
 
-class OurEventSink : public RE::BSTEventSink<RE::TESHitEvent>,
+/* class OurEventSink : public RE::BSTEventSink<RE::TESHitEvent>,
                      public RE::BSTEventSink<RE::TESActivateEvent>,
                      public RE::BSTEventSink<SKSE::CrosshairRefEvent>,
                      public RE::BSTEventSink<RE::MenuOpenCloseEvent>,
@@ -103,7 +108,7 @@ public:
 
         return RE::BSEventNotifyControl::kContinue;
     }
-};
+}; */
 
 
 
@@ -125,14 +130,11 @@ class PerkResurrection : public ResurrectionAPI {
     }
 };
 
-
-
 // Start SKSE
 SKSEPluginLoad(const SKSE::LoadInterface *skse) {
-//    REL::Module::reset();
+
 
     SKSE::Init(skse);
-    SKSE::AllocTrampoline(1 << 10);
     SetupLog();
     Hooks::Install();
 
@@ -144,18 +146,24 @@ SKSEPluginLoad(const SKSE::LoadInterface *skse) {
         return false;
     }
     g_messaging->RegisterListener("SKSE", SKSEMessageHandler);
-    auto* eventSink = OurEventSink::GetSingleton();
+ //   auto* eventSink = OurEventSink::GetSingleton();
 
     // ScriptSource
     auto* eventSourceHolder = RE::ScriptEventSourceHolder::GetSingleton();
-    eventSourceHolder->AddEventSink<RE::TESHitEvent>(eventSink);
-    eventSourceHolder->AddEventSink<RE::TESActivateEvent>(eventSink);
+ //   eventSourceHolder->AddEventSink<RE::TESHitEvent>(eventSink);
+ //   eventSourceHolder->AddEventSink<RE::TESActivateEvent>(eventSink);
 
     // SKSE
-    SKSE::GetCrosshairRefEventSource()->AddEventSink(eventSink);
+//    SKSE::GetCrosshairRefEventSource()->AddEventSink(eventSink);
 
     // UI
-    RE::UI::GetSingleton()->AddEventSink<RE::MenuOpenCloseEvent>(eventSink);
+ //   RE::UI::GetSingleton()->AddEventSink<RE::MenuOpenCloseEvent>(eventSink);
+
+    auto messaging = SKSE::GetMessagingInterface();
+    if (!messaging->RegisterListener("SKSE", SKSEMessageHandler)) {
+        SKSE::log::error("Failed to register message listener");
+        return false;
+    }
 
     info("Loading OK!!!");
     return true;
@@ -178,53 +186,24 @@ static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
             //        case SKSE::MessagingInterface::kDeleteGame:
             //        break;
         case SKSE::MessagingInterface::kInputLoaded:
-            RE::BSInputDeviceManager::GetSingleton()->AddEventSink(OurEventSink::GetSingleton());
+ //           RE::BSInputDeviceManager::GetSingleton()->AddEventSink(OurEventSink::GetSingleton());
             break;
             //      case SKSE::MessagingInterface::kNewGame:
             //      break;
         case SKSE::MessagingInterface::kDataLoaded:
-            addSubscriber();
-            // 1. Initialize PrismaUI API
             PrismaUI = static_cast<PRISMA_UI_API::IVPrismaUI1*>(
                 PRISMA_UI_API::RequestPluginAPI(PRISMA_UI_API::InterfaceVersion::V1));
 
-            // 2. Create view and call "Invoke" method to send JavaScript code to view when DOM is ready.
-            view = PrismaUI->CreateView("PrismaUI-Example-UI/index.html", [](PrismaView view) -> void {
-                // View DOM is ready then you can use Invoke here (make sure that your JS methods are available after
-                // DOM is ready).
-                logger::info("View DOM is ready {}", view);
+            if (!PrismaUI) {
+                SKSE::log::error("Failed to initialize PrismaUI API");
+                return;
+            }
 
-                PrismaUI->Invoke(view, "updateFocusLabel('No. But press F3 to focus!')");
-            });
+            SKSE::log::info("PrismaUI API initialized successfully");
 
-            // 3. Also you could to register JS listener to handling JS methods calls.
-            PrismaUI->RegisterJSListener(view, "sendDataToSKSE", [](const char* data) -> void {
-                logger::info("Received data from JS: {}", data);
-            });
-
-            // Next lines is custom KEY DOWN / KEY UP realisation which bases at "src/keyhandler".
-            KeyHandler::RegisterSink();
-            KeyHandler* keyHandler = KeyHandler::GetSingleton();
-            const uint32_t TOGGLE_FOCUS_KEY = 0x3D;  // F3 key
-
-            // Press F3 to focus/unfocus view in-game.
-            KeyHandlerEvent toggleEventHandler = keyHandler->Register(TOGGLE_FOCUS_KEY, KeyEventType::KEY_DOWN, []() {
-                auto hasFocus = PrismaUI->HasFocus(view);
-
-                if (!hasFocus) {
-                    // Focus
-                    if (PrismaUI->Focus(view)) {
-                        PrismaUI->Invoke(view, "updateFocusLabel('Yeah, it is focused! Press F3 again to unfocus.')");
-                    }
-                } else {
-                    // Unfocus
-                    PrismaUI->Unfocus(view);
-                    PrismaUI->Invoke(view, "updateFocusLabel('Nah, it is not focused.')");
-                }
-            });
-
-            // If you want to unregister the key event handlers:
-            // keyHandler->Unregister(toggleEventHandler);
+            InitializeUI();
+            addSubscriber();
+            PrismaUI->Hide(view);
             break;
     }
 }
@@ -236,6 +215,75 @@ void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell) {
     if (caster && spell) {
         caster->CastSpellImmediate(spell, false, victim, 1.0f, false, 0.0f, attacker);
     }
+}
+
+// PrismaUI
+void InitializeUI() {
+    // Create a view with DOM ready callback
+    view = PrismaUI->CreateView("Lastrium Perks/index.html", [](PrismaView view) -> void {
+        SKSE::log::info("View DOM is ready {}", view);
+        
+
+        // Initialize the UI with game data
+        PrismaUI->Invoke(view, "updatePlayerStatus('Ready for adventure!')");
+
+        // Send initial game state
+        PrismaUI->Invoke(view, "setPlayerLevel(25)");
+        PrismaUI->Invoke(view, "setPlayerHealth(100)");
+    });
+
+    // Register JavaScript event listeners
+    PrismaUI->RegisterJSListener(view, "onPlayerAction", [](const char* data) -> void {
+        SKSE::log::info("Player action received: {}", data);
+
+        std::string action = data;
+        if (action == "heal") {
+            // Implement healing logic
+            SKSE::log::info("Healing player...");
+        } else if (action == "save_game") {
+            // Implement save game logic
+            SKSE::log::info("Saving game...");
+        }
+    });
+
+    PrismaUI->RegisterJSListener(view, "sendDataToSKSE", [](const char* data) -> void { 
+        logger::info("Received data from JS: {}", data); });
+
+    PrismaUI->RegisterJSListener(view, "requestPlayerData", [](const char* data) -> void {
+        // Send updated player data back to UI
+        PrismaUI->Invoke(view, "updatePlayerData({health: 85, magicka: 120, stamina: 95})");
+    });
+
+    // Next lines is custom KEY DOWN / KEY UP realisation which bases at "src/keyhandler".
+    KeyHandler::RegisterSink();
+    KeyHandler* keyHandler = KeyHandler::GetSingleton();
+    const uint32_t TOGGLE_FOCUS_KEY = 0x3D;  // F3 key
+
+    // Press F3 to focus/unfocus view in-game.
+    KeyHandlerEvent toggleEventHandler = keyHandler->Register(TOGGLE_FOCUS_KEY, KeyEventType::KEY_DOWN, []() {
+        auto hasFocus = PrismaUI->HasFocus(view);
+
+        if (!hasFocus) {
+            // Focus
+            if (PrismaUI->Focus(view)) {
+                PrismaUI->Show(view);
+            }
+        } else {
+            // Unfocus
+            PrismaUI->Unfocus(view);
+            PrismaUI->Hide(view);
+       
+            PrismaUI->
+        }
+    });
+
+    // If you want to unregister the key event handlers:
+    // keyHandler->Unregister(toggleEventHandler);
+}
+
+// PrismaUI Send JSON
+void SendComplexData() { 
+
 }
 
 // Debug
