@@ -203,7 +203,6 @@ static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
 
             InitializeUI();
             addSubscriber();
-            PrismaUI->Hide(view);
             break;
     }
 }
@@ -221,37 +220,8 @@ void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell) {
 void InitializeUI() {
     // Create a view with DOM ready callback
     view = PrismaUI->CreateView("Lastrium Perks/index.html", [](PrismaView view) -> void {
-        SKSE::log::info("View DOM is ready {}", view);
         
-
-        // Initialize the UI with game data
-        PrismaUI->Invoke(view, "updatePlayerStatus('Ready for adventure!')");
-
-        // Send initial game state
-        PrismaUI->Invoke(view, "setPlayerLevel(25)");
-        PrismaUI->Invoke(view, "setPlayerHealth(100)");
-    });
-
-    // Register JavaScript event listeners
-    PrismaUI->RegisterJSListener(view, "onPlayerAction", [](const char* data) -> void {
-        SKSE::log::info("Player action received: {}", data);
-
-        std::string action = data;
-        if (action == "heal") {
-            // Implement healing logic
-            SKSE::log::info("Healing player...");
-        } else if (action == "save_game") {
-            // Implement save game logic
-            SKSE::log::info("Saving game...");
-        }
-    });
-
-    PrismaUI->RegisterJSListener(view, "sendDataToSKSE", [](const char* data) -> void { 
-        logger::info("Received data from JS: {}", data); });
-
-    PrismaUI->RegisterJSListener(view, "requestPlayerData", [](const char* data) -> void {
-        // Send updated player data back to UI
-        PrismaUI->Invoke(view, "updatePlayerData({health: 85, magicka: 120, stamina: 95})");
+        SKSE::log::info("View DOM is ready {}", view);
     });
 
     // Next lines is custom KEY DOWN / KEY UP realisation which bases at "src/keyhandler".
@@ -272,10 +242,10 @@ void InitializeUI() {
             // Unfocus
             PrismaUI->Unfocus(view);
             PrismaUI->Hide(view);
-       
-            PrismaUI->
+    
         }
     });
+
 
     // If you want to unregister the key event handlers:
     // keyHandler->Unregister(toggleEventHandler);
