@@ -147,6 +147,8 @@
 
 [**Stagger and Knockdown Perk Entries**](https://www.nexusmods.com/skyrimspecialedition/mods/109932) - Позволяет легко создавать перки, которые при попадании наносят оглушение или сбивают с ног
 
+[**Dynamic Grip**](https://www.nexusmods.com/skyrimspecialedition/mods/110031) - Данимаческий хват оружия
+
 # Моды на анимации:
 Тут моды которые вероятно буду интегрированы в деревья перков. 
 
