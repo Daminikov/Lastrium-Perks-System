@@ -149,6 +149,8 @@
 
 [**Dynamic Grip**](https://www.nexusmods.com/skyrimspecialedition/mods/110031) - Данимаческий хват оружия
 
+[**Throwable Weapons SKSE**](https://www.nexusmods.com/skyrimspecialedition/mods/182872) - Метание оружия
+
 # Моды на анимации:
 Тут моды которые вероятно буду интегрированы в деревья перков. 
 
