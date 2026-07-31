@@ -54,6 +54,8 @@
 
 [**HasMagicEffect - Condition Tweak**](https://www.nexusmods.com/skyrimspecialedition/mods/169779) - Плагин Skse для изменения принципа работы условия «HasMagicEffect». По умолчанию ему всё равно, активен эффект или нет, но теперь он учитывает это, если у эффекта есть определённое ключевое слово.
 
+[**State Globals Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/185199) - Собирает настраиваемую статистику и помещает ее в глобальные переменные для легкого доступа; открывает новые возможности для привилегий, зачарований и многого другого.
+
 
 
 
