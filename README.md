@@ -165,5 +165,9 @@
 [**State Behavior Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/164546) - Новые условия для анимаций. Встроенная система поведения, которая добавляет события при входе в состояние и выходе из него, а также новые, обновляемые переменные. 
 
 
+# Интересный код для идей
+Плавное открытие между меню - (https://github.com/Wuerfelhusten/SkyUI-Navbar)
+
+
 
 
