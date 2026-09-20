@@ -2,21 +2,13 @@
 #include "Hooks.h"
 #include "ResurrectionAPI.h"
 #include <keyhandler.h>
-#include "PrismaUI_API.h"
-#include <nlohmann/json.hpp>
 
 
-using JSON = nlohmann::json;
 using namespace RE;
 using namespace SKSE;
 using namespace logger;
 
 const char* plugin_name = "LastriumPerks.esp";
-auto menuName1 = "StatsMenu";
-
-// Declare the global PrismaUI API variable
-PRISMA_UI_API::IVPrismaUI1* PrismaUI = nullptr;
-static PrismaView view;
 
 
 // Variables of the "Escape from Death" perk
@@ -34,8 +26,7 @@ const int LAST_TestCrit_Mesg = 0x819;
 void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell);
 void debug_notification(RE::BGSMessage* msg);
 void addSubscriber();
-void InitializeUI();
-void SendComplexData();
+void SetupInput();
 static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message);
 
 /* class OurEventSink : public RE::BSTEventSink<RE::TESHitEvent>,
@@ -195,17 +186,10 @@ static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message) {
             //      case SKSE::MessagingInterface::kNewGame:
             //      break;
         case SKSE::MessagingInterface::kDataLoaded:
-            PrismaUI = static_cast<PRISMA_UI_API::IVPrismaUI1*>(
-                PRISMA_UI_API::RequestPluginAPI(PRISMA_UI_API::InterfaceVersion::V1));
-
-            if (!PrismaUI) {
-                SKSE::log::error("Failed to initialize PrismaUI API");
-                return;
-            }
-
-            SKSE::log::info("PrismaUI API initialized successfully");
-
-            InitializeUI();
+            // PrismaUI is not used by this plugin any more: the view, its F3 toggle and the
+            // RequestPluginAPI handshake are gone with it, so the plugin no longer needs
+            // PrismaUI.dll present at all.
+            SetupInput();
             addSubscriber();
             break;
     }
@@ -220,46 +204,13 @@ void cast_spell(RE::Actor* victim, RE::Actor* attacker, RE::SpellItem* spell) {
     }
 }
 
-// PrismaUI
-void InitializeUI() {
-    // Create a view with DOM ready callback
-    view = PrismaUI->CreateView("Lastrium Perks/index.html", [](PrismaView view) -> void {
-        
-        SKSE::log::info("View DOM is ready {}", view);
-    });
-
-    // Next lines is custom KEY DOWN / KEY UP realisation which bases at "src/keyhandler".
+// Input
+// Used to create the PrismaUI view and bind F3 to its focus toggle. That view is gone, but the key
+// sink stays wired so the KeyHandler sample (src/keyhandler.cpp) keeps working and can be lifted into
+// another project; register a hotkey with
+//   KeyHandler::GetSingleton()->Register(0x3D, KeyEventType::KEY_DOWN, []{ ... });
+void SetupInput() {
     KeyHandler::RegisterSink();
-    KeyHandler* keyHandler = KeyHandler::GetSingleton();
-    const uint32_t TOGGLE_FOCUS_KEY = 0x3D;  // F3 key
-
-    // Press F3 to focus/unfocus view in-game.
-    KeyHandlerEvent toggleEventHandler = keyHandler->Register(TOGGLE_FOCUS_KEY, KeyEventType::KEY_DOWN, []() {
-        auto hasFocus = PrismaUI->HasFocus(view);
-
-        if (!hasFocus) {
-            // Focus
-            // PrismaUI 1.2.0+ Focus(view, pauseGame, disableFocusMenu): the third argument has to be
-            // passed explicitly, otherwise garbage lands there and the framework tears down its own
-            // FocusMenu - which owns the cursor and input capture.
-            if (PrismaUI->Focus(view, false, false)) {
-                PrismaUI->Show(view);
-            }
-        } else {
-            // Unfocus
-            PrismaUI->Unfocus(view);
-            PrismaUI->Hide(view);
-        }
-    });
-
-
-    // If you want to unregister the key event handlers:
-    // keyHandler->Unregister(toggleEventHandler);
-}
-
-// PrismaUI Send JSON
-void SendComplexData() { 
-
 }
 
 // Debug
