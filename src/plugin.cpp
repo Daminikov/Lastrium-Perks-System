@@ -122,7 +122,11 @@ class PerkResurrection : public ResurrectionAPI {
     }
 
     void resurrect(RE::Actor* a) override {
-        a->AsActorValueOwner()->RestoreActorValue(ACTOR_VALUE_MODIFIER::kDamage, ActorValue::kHealth, 10000);
+        // NG v8 renamed vtable slot 06 to ModActorValue(ACTOR_VALUE_MODIFIER, ActorValue, float) and
+        // turned RestoreActorValue into a non-virtual helper. v8's RestoreActorValue(kHealth, 10000)
+        // expands to exactly ModActorValue(kDamage, kHealth, +10000) - the same engine call this line
+        // used to make through the old (ACTOR_VALUE_MODIFIER, ActorValue, float) signature.
+        a->AsActorValueOwner()->RestoreActorValue(ActorValue::kHealth, 10000.0f);
         static auto spel = RE::TESDataHandler::GetSingleton()->LookupForm<RE::SpellItem>(EscapeFromDeath_Spel, plugin_name);
         cast_spell(a, a, spel);
         static auto mesg = RE::TESDataHandler::GetSingleton()->LookupForm<RE::BGSMessage>(EscapeFromDeath_Mesg, plugin_name);
@@ -235,14 +239,16 @@ void InitializeUI() {
 
         if (!hasFocus) {
             // Focus
-            if (PrismaUI->Focus(view)) {
+            // PrismaUI 1.2.0+ Focus(view, pauseGame, disableFocusMenu): the third argument has to be
+            // passed explicitly, otherwise garbage lands there and the framework tears down its own
+            // FocusMenu - which owns the cursor and input capture.
+            if (PrismaUI->Focus(view, false, false)) {
                 PrismaUI->Show(view);
             }
         } else {
             // Unfocus
             PrismaUI->Unfocus(view);
             PrismaUI->Hide(view);
-    
         }
     });
 
@@ -260,7 +266,9 @@ void SendComplexData() {
 void debug_notification(RE::BGSMessage* msg) {
     RE::BSString a;
     msg->GetDescription(a, msg);
-    RE::DebugNotification(a.c_str());
+    // NG v8 dropped RE::DebugNotification; the replacement takes an optional sound event and a
+    // "cancel if already queued" flag (same fix as in SKSE-Template BEST+).
+    RE::SendHUDMessage::ShowHUDMessage(a.c_str(), nullptr, false);
 }
 
 // Add a listener

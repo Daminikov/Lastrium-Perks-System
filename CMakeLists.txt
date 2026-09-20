@@ -57,7 +57,10 @@ include(FetchContent)
 
 set(ENABLE_SKYRIM_SE ON CACHE BOOL " " FORCE)
 set(ENABLE_SKYRIM_AE ON CACHE BOOL " " FORCE)
-set(ENABLE_SKYRIM_VR ON CACHE BOOL " " FORCE)
+# VR is off: NG v8 pulls extern/openvr/lib/win64/openvr_api.lib for VR builds, and that binary is
+# not part of the git checkout - the build dies with "missing and no known rule to make it".
+# This mod targets SE/AE (1.7.104) only.
+set(ENABLE_SKYRIM_VR OFF CACHE BOOL " " FORCE)
 set(BUILD_TESTS OFF CACHE BOOL " " FORCE)
 
 add_subdirectory("$ENV{COMMONLIB_SSE_FOLDER}" ${CMAKE_CURRENT_BINARY_DIR}/_deps/clib-build)

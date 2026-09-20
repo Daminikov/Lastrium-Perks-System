@@ -1,5 +1,32 @@
 #pragma once
 
+// ------------------------------------------------------------------------------
+//  Standard library FIRST.
+//  CommonLibSSE-NG v8 generates __<Target>Plugin.cpp containing only
+//  #include "REL/Relocation.h" and #include "SKSE/SKSE.h", while REL/Version.h
+//  uses std::uint16_t / std::array / std::less without including anything itself.
+//  This PCH is what feeds them (same fix as in SKSE-Template BEST+).
+// ------------------------------------------------------------------------------
+#include <algorithm>
+#include <array>
+#include <chrono>
+#include <compare>
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#include <filesystem>
+#include <functional>
+#include <memory>
+#include <optional>
+#include <stdexcept>
+#include <string>
+#include <string_view>
+#include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+
 #pragma warning(push)
 #include <spdlog/sinks/basic_file_sink.h>
 #include "RE/Skyrim.h"
