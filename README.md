@@ -54,6 +54,10 @@
 
 [**HasMagicEffect - Condition Tweak**](https://www.nexusmods.com/skyrimspecialedition/mods/169779) - Плагин Skse для изменения принципа работы условия «HasMagicEffect». По умолчанию ему всё равно, активен эффект или нет, но теперь он учитывает это, если у эффекта есть определённое ключевое слово.
 
+[**State Globals Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/185199) - Собирает настраиваемую статистику и помещает ее в глобальные переменные для легкого доступа; открывает новые возможности для привилегий, зачарований и многого другого.
+
+[**Dynamic Magic Modification Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/127918) - Позволяет динамически изменять свойства заклинаний в момент произнесения. Пользователи фреймворка могут динамически изменять время зарядки, стоимость кастинга, ресурсы для кастинга, масштаб и многое другое в зависимости от широкого спектра условий.
+
 
 
 
@@ -147,12 +151,22 @@
 
 [**Stagger and Knockdown Perk Entries**](https://www.nexusmods.com/skyrimspecialedition/mods/109932) - Позволяет легко создавать перки, которые при попадании наносят оглушение или сбивают с ног
 
+[**Dynamic Grip**](https://www.nexusmods.com/skyrimspecialedition/mods/110031) - Данимаческий хват оружия
+
+[**Throwable Weapons SKSE**](https://www.nexusmods.com/skyrimspecialedition/mods/182872) - Метание оружия
+
 # Моды на анимации:
 Тут моды которые вероятно буду интегрированы в деревья перков. 
 
 [**TK Dodge SE**](https://www.nexusmods.com/skyrimspecialedition/mods/15309) - Уклонения. Нужно привязать работу уклонений к перкам. 
 
 [**Stances NG**](https://www.nexusmods.com/skyrimspecialedition/mods/117986) - Стойки. Нужно сделать перки которые будут работать в определенных стойках. 
+
+[**State Behavior Framework**](https://www.nexusmods.com/skyrimspecialedition/mods/164546) - Новые условия для анимаций. Встроенная система поведения, которая добавляет события при входе в состояние и выходе из него, а также новые, обновляемые переменные. 
+
+
+# Интересный код для идей
+Плавное открытие между меню - (https://github.com/Wuerfelhusten/SkyUI-Navbar)
 
 
 
